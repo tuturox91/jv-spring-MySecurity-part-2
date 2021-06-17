@@ -1,11 +1,11 @@
 package mate.academy.spring.dao.impl;
 
-import mate.academy.spring.dao.MovieSessionDao;
-import mate.academy.spring.exception.DataProcessingException;
-import mate.academy.spring.model.MovieSession;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import mate.academy.spring.dao.MovieSessionDao;
+import mate.academy.spring.exception.DataProcessingException;
+import mate.academy.spring.model.MovieSession;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;

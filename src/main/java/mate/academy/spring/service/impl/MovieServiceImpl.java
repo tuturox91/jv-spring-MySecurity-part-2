@@ -1,10 +1,10 @@
 package mate.academy.spring.service.impl;
 
+import java.util.List;
 import mate.academy.spring.dao.MovieDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.Movie;
 import mate.academy.spring.service.MovieService;
-import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service

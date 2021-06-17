@@ -1,13 +1,13 @@
 package mate.academy.spring.service.impl;
 
+import java.time.LocalDateTime;
+import java.util.List;
 import mate.academy.spring.dao.OrderDao;
 import mate.academy.spring.model.Order;
 import mate.academy.spring.model.ShoppingCart;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.OrderService;
 import mate.academy.spring.service.ShoppingCartService;
-import java.time.LocalDateTime;
-import java.util.List;
 import org.springframework.stereotype.Service;
 
 @Service

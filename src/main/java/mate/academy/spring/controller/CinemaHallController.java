@@ -1,13 +1,13 @@
 package mate.academy.spring.controller;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import javax.validation.Valid;
 import mate.academy.spring.dto.request.CinemaHallRequestDto;
 import mate.academy.spring.dto.response.CinemaHallResponseDto;
 import mate.academy.spring.model.CinemaHall;
 import mate.academy.spring.service.CinemaHallService;
 import mate.academy.spring.service.mapper.CinemaHallMapper;
-import java.util.List;
-import java.util.stream.Collectors;
-import javax.validation.Valid;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

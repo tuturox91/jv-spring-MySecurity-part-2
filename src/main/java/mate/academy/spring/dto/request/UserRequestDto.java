@@ -1,8 +1,8 @@
 package mate.academy.spring.dto.request;
 
+import javax.validation.constraints.Size;
 import mate.academy.spring.lib.FieldsValueMatch;
 import mate.academy.spring.lib.ValidEmail;
-import javax.validation.constraints.Size;
 
 @FieldsValueMatch(
         field = "password",

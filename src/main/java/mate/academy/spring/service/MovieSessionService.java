@@ -1,8 +1,8 @@
 package mate.academy.spring.service;
 
-import mate.academy.spring.model.MovieSession;
 import java.time.LocalDate;
 import java.util.List;
+import mate.academy.spring.model.MovieSession;
 
 public interface MovieSessionService {
     List<MovieSession> findAvailableSessions(Long movieId, LocalDate date);

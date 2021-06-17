@@ -1,1 +1,58 @@
-# jv-homework-template
+# Spring security part 2
+
+- Configure DB authentication instead of In memory authentication
+- Add Role entity, Dao and Service layer for it.
+    ```java
+      public interface RoleService {
+          void add(Role role);
+      
+          Role getRoleByName(String roleName);
+      }
+    ```
+
+- Configure role access to specific resources for `ADMIN` and for `USER`.
+  You should configure access to __all endpoints__ in your application. Example:
+```
+POST: /register - all
+GET: /cinema-halls - user/admin
+POST: /cinema-halls - admin
+GET: /movies - user/admin
+POST: /movies - admin
+GET: /movie-sessions/available - user/admin
+GET: /movie-sessions/{id} - user/admin
+POST: /movie-sessions - admin
+PUT: /movie-sessions/{id} - admin
+DELETE: /movie-sessions/{id} - admin
+GET: /orders - user
+POST: /orders/complete - user
+POST: /shopping-carts/movie-sessions - user
+GET: /shopping-carts/by-user - user
+GET: /users/by-email - admin
+...
+``` 
+
+HINT:
+- It's up to you what type for RoleName field to choose(String/Enum) but enum would be preferable in most cases.
+- Roles and first Admin user can be injected inside DataInitializer class using annotation @PostConstruct.
+- You can specify the different HTTP method access for the same endpoint. For example:
+
+```plainjava
+        protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .and()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.POST,"/movies/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/movies/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .permitAll()
+                .and()
+                .httpBasic()
+                .and()
+                .csrf().disable();
+    }
+```
+
+__You can check yourself using this__ [checklist](https://mate-academy.github.io/jv-program-common-mistakes/java-spring/security-part-2/jv-spring-security-checklist)

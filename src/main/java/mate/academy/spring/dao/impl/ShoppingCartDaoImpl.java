@@ -1,5 +1,6 @@
 package mate.academy.spring.dao.impl;
 
+import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.ShoppingCartDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.ShoppingCart;
@@ -11,33 +12,10 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ShoppingCartDaoImpl implements ShoppingCartDao {
-    private final SessionFactory factory;
+public class ShoppingCartDaoImpl extends AbstractDao<ShoppingCart> implements ShoppingCartDao {
 
     public ShoppingCartDaoImpl(SessionFactory factory) {
-        this.factory = factory;
-    }
-
-    @Override
-    public ShoppingCart add(ShoppingCart shoppingCart) {
-        Transaction transaction = null;
-        Session session = null;
-        try {
-            session = factory.openSession();
-            transaction = session.beginTransaction();
-            session.save(shoppingCart);
-            transaction.commit();
-            return shoppingCart;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can't insert shoppingCart " + shoppingCart, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
+        super(factory);
     }
 
     @Override

@@ -3,6 +3,7 @@ package mate.academy.spring.dao.impl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+import mate.academy.spring.dao.AbstractDao;
 import mate.academy.spring.dao.MovieSessionDao;
 import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
@@ -13,33 +14,10 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class MovieSessionDaoImpl implements MovieSessionDao {
-    private final SessionFactory factory;
+public class MovieSessionDaoImpl extends AbstractDao<MovieSession> implements MovieSessionDao {
 
     public MovieSessionDaoImpl(SessionFactory factory) {
-        this.factory = factory;
-    }
-
-    @Override
-    public MovieSession add(MovieSession movieSession) {
-        Transaction transaction = null;
-        Session session = null;
-        try {
-            session = factory.openSession();
-            transaction = session.beginTransaction();
-            session.persist(movieSession);
-            transaction.commit();
-            return movieSession;
-        } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            throw new DataProcessingException("Can't insert movie session " + movieSession, e);
-        } finally {
-            if (session != null) {
-                session.close();
-            }
-        }
+        super(factory);
     }
 
     @Override

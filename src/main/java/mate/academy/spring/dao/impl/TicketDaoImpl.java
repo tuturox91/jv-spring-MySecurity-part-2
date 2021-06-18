@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class TicketDaoImpl extends AbstractDao<Ticket> implements TicketDao {
-
     public TicketDaoImpl(SessionFactory factory) {
-        super(factory);
+        super(factory, Ticket.class);
     }
 }

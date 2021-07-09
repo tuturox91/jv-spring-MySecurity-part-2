@@ -43,7 +43,7 @@ public abstract class AbstractDao<T> {
             return Optional.ofNullable(session.get(clazz, id));
         } catch (Exception e) {
             throw new DataProcessingException("Can't get "
-                + clazz.getSimpleName() + ", id: " + id, e);
+                    + clazz.getSimpleName() + ", id: " + id, e);
         }
     }
 
@@ -52,7 +52,7 @@ public abstract class AbstractDao<T> {
             return session.createQuery("from " + clazz.getSimpleName(), clazz).getResultList();
         } catch (Exception e) {
             throw new DataProcessingException("Can't get all "
-                + clazz.getSimpleName() + "s from db", e);
+                    + clazz.getSimpleName() + "s from db", e);
         }
     }
 
@@ -70,7 +70,7 @@ public abstract class AbstractDao<T> {
                 transaction.rollback();
             }
             throw new DataProcessingException("Can't update "
-                + clazz.getSimpleName() + " " + t, e);
+                    + clazz.getSimpleName() + " " + t, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -92,7 +92,7 @@ public abstract class AbstractDao<T> {
                 transaction.rollback();
             }
             throw new DataProcessingException("Can't delete "
-                + clazz.getSimpleName() + " with id: " + id, e);
+                    + clazz.getSimpleName() + " with id: " + id, e);
         } finally {
             if (session != null) {
                 session.close();

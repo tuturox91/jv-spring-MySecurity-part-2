@@ -1,6 +1,7 @@
 package mate.academy.spring.controller;
 
 import mate.academy.spring.dto.response.ShoppingCartResponseDto;
+import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.MovieSessionService;
@@ -36,7 +37,9 @@ public class ShoppingCartController {
     @PostMapping("/movie-sessions")
     public void addToCart(Authentication auth, @RequestParam Long movieSessionId) {
         UserDetails details = (UserDetails) auth.getPrincipal();
-        User user = userService.findByEmail(details.getUsername());
+        String email = details.getUsername();
+        User user = userService.findByEmail(email).orElseThrow(
+                () -> new DataProcessingException("User with email " + email + " not found"));
         MovieSession movieSession = movieSessionService.get(movieSessionId);
         shoppingCartService.addSession(movieSession, user);
     }
@@ -44,7 +47,9 @@ public class ShoppingCartController {
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUser(Authentication auth) {
         UserDetails details = (UserDetails) auth.getPrincipal();
-        User user = userService.findByEmail(details.getUsername());
+        String email = details.getUsername();
+        User user = userService.findByEmail(email).orElseThrow(
+                () -> new DataProcessingException("User with email " + email + " not found"));
         return shoppingCartMapper.mapToDto(shoppingCartService.getByUser(user));
     }
 }

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/movie-sessions")
 public class MovieSessionController {
-    public static final String DATE_PATTERN = DateTimePatternUtil.DATE_PATTERN;
+    private static final String DATE_PATTERN = DateTimePatternUtil.DATE_PATTERN;
     private final MovieSessionService movieSessionService;
     private final MovieSessionMapper movieSessionMapper;
 

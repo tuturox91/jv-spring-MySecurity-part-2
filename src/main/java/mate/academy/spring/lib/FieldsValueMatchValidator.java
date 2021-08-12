@@ -1,5 +1,6 @@
 package mate.academy.spring.lib;
 
+import java.util.Objects;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import org.springframework.beans.BeanWrapperImpl;
@@ -21,10 +22,6 @@ public class FieldsValueMatchValidator
         Object fieldMatchValue = new BeanWrapperImpl(value)
                 .getPropertyValue(fieldMatch);
 
-        if (fieldValue != null) {
-            return fieldValue.equals(fieldMatchValue);
-        } else {
-            return fieldMatchValue == null;
-        }
+        return Objects.equals(fieldValue, fieldMatchValue);
     }
 }

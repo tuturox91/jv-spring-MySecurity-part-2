@@ -4,7 +4,7 @@
 - Add Role entity, Dao and Service layer for it.
     ```java
       public interface RoleService {
-          void add(Role role);
+          Role add(Role role);
       
           Role getRoleByName(String roleName);
       }

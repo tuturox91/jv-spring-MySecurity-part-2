@@ -2,7 +2,6 @@ package mate.academy.spring.service.impl;
 
 import java.util.Optional;
 import mate.academy.spring.dao.UserDao;
-import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.User;
 import mate.academy.spring.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,7 +26,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User get(Long id) {
         return userDao.get(id).orElseThrow(
-                () -> new DataProcessingException("User with id " + id + " not found"));
+                () -> new RuntimeException("User with id " + id + " not found"));
     }
 
     @Override

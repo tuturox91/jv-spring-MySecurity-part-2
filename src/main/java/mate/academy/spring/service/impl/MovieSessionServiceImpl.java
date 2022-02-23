@@ -3,7 +3,6 @@ package mate.academy.spring.service.impl;
 import java.time.LocalDate;
 import java.util.List;
 import mate.academy.spring.dao.MovieSessionDao;
-import mate.academy.spring.exception.DataProcessingException;
 import mate.academy.spring.model.MovieSession;
 import mate.academy.spring.service.MovieSessionService;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ public class MovieSessionServiceImpl implements MovieSessionService {
     @Override
     public MovieSession get(Long id) {
         return movieSessionDao.get(id).orElseThrow(
-                () -> new DataProcessingException("Session with id " + id + " not found"));
+                () -> new RuntimeException("Session with id " + id + " not found"));
     }
 
     @Override

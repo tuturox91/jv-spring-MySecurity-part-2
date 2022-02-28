@@ -6,7 +6,7 @@
       public interface RoleService {
           Role add(Role role);
       
-          Role getRoleByName(String roleName);
+          Role getByName(String roleName);
       }
     ```
 
@@ -19,7 +19,6 @@ POST: /cinema-halls - admin
 GET: /movies - user/admin
 POST: /movies - admin
 GET: /movie-sessions/available - user/admin
-GET: /movie-sessions/{id} - user/admin
 POST: /movie-sessions - admin
 PUT: /movie-sessions/{id} - admin
 DELETE: /movie-sessions/{id} - admin
